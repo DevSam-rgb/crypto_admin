@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../app_icons/custom_icons.dart';
 
 class DashboardCard extends StatelessWidget {
   final String iconPath;
@@ -30,9 +33,12 @@ class DashboardCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
-                backgroundImage: AssetImage(iconPath),
-                backgroundColor: Colors.white, // Use AssetImage here
-                radius: 20, // Adjust radius as needed
+                backgroundColor: Colors.white, // Set the desired background color
+                radius: 20, // Adjust the radius as needed
+                child: SvgPicture.asset(
+                  iconPath,
+                  color: Color.fromARGB(255, 1, 67, 187),// Use the icon parameter for the SVG asset path.
+                ),
               ),
               const Spacer(),
               Text(value,
