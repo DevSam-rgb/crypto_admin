@@ -16,4 +16,10 @@ class CustomIcons{
   static const String referrals = "assets/icons/referrals.svg";
   static const String totalmoney = "assets/icons/total_money.svg";
   static const String withdrawal = "assets/icons/withrawal.svg";
+  static const String back = "assets/icons/back.svg";
+  static const String generalinfo = "assets/icons/generalinfo.svg";
 }
+
+///SvgPicture.asset(
+//                     CustomIcons.close,
+//                   ),

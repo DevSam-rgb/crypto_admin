@@ -1,26 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class UsersScreen extends StatelessWidget {
+import '../app_icons/custom_icons.dart';
+import '../widgets/search_bar.dart';
+import '../widgets/user_tile.dart';
+
+class UsersScreen extends StatefulWidget {
   const UsersScreen({super.key});
+
+  @override
+  State<UsersScreen> createState() => _UsersScreenState();
+}
+
+class _UsersScreenState extends State<UsersScreen> {
+  bool _showActiveUsers =
+      true; // Tracks whether to show active or inactive users
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(color: Colors.black), // Back icon
-        title: const Text(
-          'Users',
-          style: TextStyle(color: Colors.black, fontSize: 18),
+        leading: IconButton(
+          icon: SvgPicture.asset(CustomIcons.back),
+          onPressed: () {
+            // Navigator.pop(context);
+          },
         ),
+        title: Text(
+          'Users',
+          style: GoogleFonts.dmSans(
+            fontSize: 16,
+            fontWeight: FontWeight.w700,
+            color: Colors.black,
+          ),
+        ),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: SearchBar(), // Custom Search Bar widget
+          SizedBox(
+            height: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: CustomSearchBar(), // Custom Search Bar widget
           ),
           const SizedBox(height: 16),
           Padding(
@@ -28,35 +55,58 @@ class UsersScreen extends StatelessWidget {
             child: Row(
               children: [
                 // Active Users Button
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _showActiveUsers = true; // Show active users
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0, // Removes shadow
+                    backgroundColor: _showActiveUsers
+                        ? const Color.fromARGB(
+                            255, 1, 67, 187) // Active background color
+                        : Colors.white, // Inactive background color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      side: BorderSide(
+                        color: const Color(0xFFBDBDBD), // Grey border color
+                        width: 1.0,
                       ),
                     ),
-                    child: const Text(
-                      'Active Users',
-                      style: TextStyle(color: Colors.white),
+                  ),
+                  child: Text(
+                    'Active Users',
+                    style: GoogleFonts.dmSans(
+                      color: _showActiveUsers ? Colors.white : Colors.black,
                     ),
                   ),
                 ),
                 const SizedBox(width: 8),
-                // Inactive Users Button
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.grey[200],
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      _showActiveUsers = false; // Show inactive users
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                    elevation: 0, // Removes shadow
+                    backgroundColor: !_showActiveUsers
+                        ? const Color.fromARGB(
+                            255, 1, 67, 187) // Active background color
+                        :  Colors.white, // Inactive background color
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      side: BorderSide(
+                        color: const Color(0xFFBDBDBD), // Grey border color
+                        width: 1.0,
                       ),
                     ),
-                    child: const Text(
-                      'Inactive Users',
-                      style: TextStyle(color: Colors.black),
+                  ),
+                  child: Text(
+                    'Inactive Users',
+                    style: GoogleFonts.dmSans(
+                      color: !_showActiveUsers ? Colors.white : Colors.black,
                     ),
                   ),
                 ),
@@ -67,121 +117,21 @@ class UsersScreen extends StatelessWidget {
           // User List
           Expanded(
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: 10, // Adjust the item count as needed
               itemBuilder: (context, index) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
                   child: UserTile(
                     initials: "TO",
-                    name: "Thankgod ogbonna",
-                    status: "Active",
+                    name: _showActiveUsers ? "Thankgod Ogbonna" : "John Doe",
+                    status: _showActiveUsers ? "Active" : "Inactive",
                   ),
                 );
               },
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-// Custom Widget for User Item
-class UserTile extends StatelessWidget {
-  final String initials;
-  final String name;
-  final String status;
-
-  const UserTile({
-    super.key,
-    required this.initials,
-    required this.name,
-    required this.status,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            blurRadius: 10,
-            spreadRadius: 1,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          // Circle Avatar
-          CircleAvatar(
-            backgroundColor: Colors.grey[200],
-            radius: 20,
-            child: Text(
-              initials,
-              style: const TextStyle(
-                color: Colors.blue,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(width: 12),
-          // Name and Status
-          Expanded(
-            child: Text(
-              name,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          // Status and Indicator
-          Row(
-            children: [
-              Text(
-                status,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(width: 4),
-              const Icon(
-                Icons.circle,
-                color: Colors.green,
-                size: 12,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// Custom SearchBar Widget
-class SearchBar extends StatelessWidget {
-  const SearchBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: const Color(0xFFF5F5F5),
-        hintText: 'Search',
-        prefixIcon: const Icon(Icons.search, color: Colors.grey),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide.none,
-        ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 12),
       ),
     );
   }

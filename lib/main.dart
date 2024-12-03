@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white, // Set the scaffold background color to white
+        scaffoldBackgroundColor: Color.fromARGB(1, 253, 253, 253), // Set the scaffold background color to white
       ),
       title: 'Crypto Admin',
       home: const LoginScreen(),
