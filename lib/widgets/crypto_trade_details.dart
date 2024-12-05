@@ -5,9 +5,6 @@ class CryptoDetailsCard extends StatelessWidget {
   final String iconUrl;
   final String giftcardName;
   final String amount;
-  final String currency;
-  final String cardValue;
-  final String cardRange;
   final String accountNumber;
   final String bankName;
   final String accountHolder;
@@ -20,9 +17,6 @@ class CryptoDetailsCard extends StatelessWidget {
     required this.iconUrl,
     required this.giftcardName,
     required this.amount,
-    required this.currency,
-    required this.cardValue,
-    required this.cardRange,
     required this.accountNumber,
     required this.bankName,
     required this.accountHolder,

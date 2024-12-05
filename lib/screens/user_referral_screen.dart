@@ -1,3 +1,4 @@
+import 'package:crypto_admin/screens/modify_user_referral_link.dart';
 import 'package:crypto_admin/screens/user_giftcard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -42,6 +43,17 @@ class _UserReferralScreenState extends State<UserReferralScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          TextButton(onPressed:() {
+            // Add functionality for Continue button
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ModifyUserReferralLinkScreen()),
+            );
+          }, child: Text('Modify Link', style: GoogleFonts.dmSans(
+              color: Colors.blueAccent
+          ),))
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(

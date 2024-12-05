@@ -4,6 +4,8 @@ import 'package:crypto_admin/widgets/drawer_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../screens/modify_milespay_rate_screen.dart';
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
 
@@ -92,7 +94,13 @@ class AppDrawer extends StatelessWidget {
               DrawerTile(
                 icon: 'assets/icons/referrals.svg',
                 title: 'Referral',
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ModifyMilespayRateScreen()),
+                  );
+                },
               ),
               DrawerTile(
                 icon: 'assets/icons/giftcards.svg',

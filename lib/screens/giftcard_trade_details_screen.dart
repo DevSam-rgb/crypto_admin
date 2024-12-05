@@ -43,7 +43,7 @@ class _GiftcardDetailsScreenState extends State<GiftcardDetailsScreen> {
               iconUrl: 'assets/pngs/appstore.png',
               giftcardName: 'Amazon GiftCard',
               amount: '₦1,000.00',
-              currency: 'United state',
+              currency: 'United State',
               cardValue: '\$100',
               cardRange: '100-500',
               accountNumber: '707790016',

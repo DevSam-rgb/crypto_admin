@@ -19,70 +19,73 @@ class NotificationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Icon/Image
-          CircleAvatar(
-            radius: 20,
-            backgroundColor: Colors.grey.shade200,
-            child: Image.asset(
-              iconUrl,
+    return GestureDetector(
+      onTap: onViewPressed,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Icon/Image
+            CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.grey.shade200,
+              child: Image.asset(
+                iconUrl,
+              ),
             ),
-          ),
-          const SizedBox(width: 12),
-          // Notification Content
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
+            const SizedBox(width: 12),
+            // Notification Content
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: GoogleFonts.dmSans(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    description,
+                    style: GoogleFonts.dmSans(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade700,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    time,
+                    style: GoogleFonts.dmSans(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey.shade500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // View Button
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: GestureDetector(
+                onTap: onViewPressed,
+                child: Text(
+                  "View >",
                   style: GoogleFonts.dmSans(
-                    fontSize: 14,
+                    fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: Colors.blue,
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  description,
-                  style: GoogleFonts.dmSans(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  time,
-                  style: GoogleFonts.dmSans(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.grey.shade500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // View Button
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: GestureDetector(
-              onTap: onViewPressed,
-              child: Text(
-                "View >",
-                style: GoogleFonts.dmSans(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.blue,
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
