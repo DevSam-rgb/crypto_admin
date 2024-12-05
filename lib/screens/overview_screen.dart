@@ -1,3 +1,4 @@
+import 'package:crypto_admin/screens/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../app_icons/custom_icons.dart';
@@ -16,8 +17,18 @@ class _OverviewScreenState extends State<OverviewScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          SvgPicture.asset(
-            CustomIcons.notification,
+          GestureDetector(
+            onTap: () {
+              // Add functionality for Continue button
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NotificationsScreen()),
+              );
+            },
+            child: SvgPicture.asset(
+              CustomIcons.notification,
+            ),
           ),
           const SizedBox(
             width: 16,

@@ -1,3 +1,5 @@
+import 'package:crypto_admin/screens/giftcards_screen.dart';
+import 'package:crypto_admin/screens/wallet_screen.dart';
 import 'package:crypto_admin/widgets/drawer_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -49,14 +51,60 @@ class AppDrawer extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const DrawerTile(icon: 'assets/icons/total_money.svg',title: 'Total Money',),
-              const DrawerTile(icon: 'assets/icons/users.svg',title: 'Users',),
-              const DrawerTile(icon: 'assets/icons/wallet.svg',title: 'Wallet Addresses',),
-              const DrawerTile(icon: 'assets/icons/withrawal.svg',title: 'Withdrawal',),
-              const DrawerTile(icon: 'assets/icons/crpto.svg',title: 'Pending Trade',subTitle: 'Crypto',),
-              const DrawerTile(icon: 'assets/icons/giftcard.svg',title: 'Pending Trade',subTitle: 'Giftcard',),
-              const DrawerTile(icon: 'assets/icons/referrals.svg',title: 'Referral',),
-              const DrawerTile(icon: 'assets/icons/giftcards.svg',title: 'Gift Cards',),
+              DrawerTile(
+                icon: 'assets/icons/total_money.svg',
+                title: 'Total Money',
+                onTap: () {},
+              ),
+              DrawerTile(
+                icon: 'assets/icons/users.svg',
+                title: 'Users',
+                onTap: () {},
+              ),
+              DrawerTile(
+                icon: 'assets/icons/wallet.svg',
+                title: 'Wallet Addresses',
+                onTap:  () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WalletScreen()),
+                  );
+                },
+              ),
+              DrawerTile(
+                icon: 'assets/icons/withrawal.svg',
+                title: 'Withdrawal',
+                onTap: () {},
+              ),
+              DrawerTile(
+                icon: 'assets/icons/crpto.svg',
+                title: 'Pending Trade',
+                subTitle: 'Crypto',
+                onTap: () {},
+              ),
+              DrawerTile(
+                icon: 'assets/icons/giftcard.svg',
+                title: 'Pending Trade',
+                subTitle: 'Giftcard',
+                onTap: () {},
+              ),
+              DrawerTile(
+                icon: 'assets/icons/referrals.svg',
+                title: 'Referral',
+                onTap: () {},
+              ),
+              DrawerTile(
+                icon: 'assets/icons/giftcards.svg',
+                title: 'Gift Cards',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const GiftcardsScreen()),
+                  );
+                },
+              ),
             ],
           ),
         ),

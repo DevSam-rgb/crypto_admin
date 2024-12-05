@@ -1,3 +1,4 @@
+import 'package:crypto_admin/screens/giftcards_screen.dart';
 import 'package:flutter/material.dart';
 
 class RateScreen extends StatefulWidget {
@@ -10,6 +11,6 @@ class RateScreen extends StatefulWidget {
 class _RateScreenState extends State<RateScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return GiftcardsScreen();
   }
 }

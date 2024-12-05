@@ -25,6 +25,7 @@ class ActionButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
+          minimumSize: Size(0, 0),
           elevation: 0, // Removes shadow
           backgroundColor: backgroundColor, // Background color
           shape: RoundedRectangleBorder(
